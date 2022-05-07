@@ -1,0 +1,25 @@
+.submitButton:onclick {
+    background-color: blue;
+    color : white; 
+}
+
+.score{
+    font-size: 50px;
+    color : green;
+}
+.background{
+    background-color: white;
+    border-radius: 10px;
+}
+.container{
+    padding:30px;
+}
+
+.options{
+    margin:10px;
+}
+.alert{
+    color: red;
+    font-weight: bold;
+    font-size:15px;
+}

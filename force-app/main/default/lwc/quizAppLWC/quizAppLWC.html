@@ -1,0 +1,28 @@
+<template>
+    <div class="background" id="top">
+        <div class="container">
+            <template if:true={showQuestions}>
+                <template for:each={questions} for:item="q" for:index="op" id={q.Id}>
+                    <div key={q.Id} class={q.id}>
+                    <p style="display: flex; justify-content: space-between;" key={q.id}>{op} : {q.q}</p>
+                        <lightning-radio-group key={q.id} options={q.a} value={q.a} onchange={handleChange} class="my-radio-group" required
+                        type="radio"></lightning-radio-group>
+
+                        <p key={q.id} style="margin:20px"></p>
+                    </div>
+                </template>
+                <lightning-button label="Submit" title="Non-primary action" id="submitBtn" onclick={submitClick}
+                    class="slds-m-left_x-small submitButton"></lightning-button>
+                    <template if:true={errorMsg}>
+                        <div class="alert">
+                            Mark All Questions
+                        </div>
+                    </template>
+            </template>
+           
+            <template if:false={showQuestions}>
+                <p class="score"> Score : {score} out of {questions.length}</p>
+            </template>
+        </div>
+    </div>
+</template>
