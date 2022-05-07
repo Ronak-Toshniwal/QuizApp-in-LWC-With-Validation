@@ -1,3 +1,5 @@
+![This is an image](https://github.com/Ronak-Toshniwal/QuizApp-in-LWC-With-Validation/blob/main/Ronak%20QuizApp%20In%20LWC%20With%20Validation.gif)
+
 # Salesforce DX Project: Next Steps
 
 Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
