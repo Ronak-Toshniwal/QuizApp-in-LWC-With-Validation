@@ -1,4 +1,4 @@
-![This is an image](https://github.com/Ronak-Toshniwal/QuizApp-in-LWC-With-Validation/blob/QuizApp-in-LWC-with-Pagination-and-lightning-Card/Screen%20Recording%202022-05-11%20at%209.15.40%20PM.mov)
+![App in action](https://github.com/Ronak-Toshniwal/QuizApp-in-LWC-With-Validation/blob/QuizApp-in-LWC-with-Pagination-and-lightning-Card/working%20app%20pov.gif)
 
 # Salesforce DX Project: Next Steps
 
