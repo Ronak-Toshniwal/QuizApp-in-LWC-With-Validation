@@ -4,42 +4,44 @@
             <template if:true={showQuestions}>
                 <template for:each={questions} for:item="q" for:index="op" id={q.id}>
                     <template if:true={q.show} key={q.id}>
-                    <div key={q.id} class={q.id}>
-                        <lightning-card key={q.id}  variant="Narrow"  title={q.q} icon-name="standard:account">
-                            
-                            <!-- <p style="display: flex; justify-content: space-between;" key={q.id}>{op} : {q.q}</p> -->
-                            <lightning-radio-group key={q.id} options={q.a} value={q.a} onchange={handleChange} class="my-radio-group"
-                            type="radio"></lightning-radio-group>
-                        </lightning-card>
-                        
+                        <div key={q.id} class={q.id}>
+                            <lightning-card key={q.id} variant="Narrow" title={q.q} icon-name="standard:account"
+                                class={q.id}>
+
+                                <!-- <p style="display: flex; justify-content: space-between;" key={q.id}>{op} : {q.q}</p>  -->
+                                <lightning-radio-group key={q.id} options={q.a} value={q.a} onchange={handleChange}
+                                    class={q.id} id={q.id} type="checkbox"></lightning-radio-group>
+                            </lightning-card>
+
                             <lightning-layout>
                                 <lightning-layout-item>
-                                    <lightning-button label="Previous" icon-name="utility:chevronleft" onclick={previousHandler}></lightning-button>
+                                    <lightning-button label="Previous" icon-name="utility:chevronleft"
+                                        onclick={previousHandler} class="prev"></lightning-button>
                                 </lightning-layout-item>
                                 <lightning-layout-item>
-                                        <lightning-button label="First Page" icon-name="utility:chevronleft" onclick={firstPageHandler}></lightning-button>
+                                    <lightning-button label="First Page" icon-name="utility:chevronleft"
+                                        onclick={firstPageHandler}></lightning-button>
                                 </lightning-layout-item>
-                                
+
                                 <lightning-layout-item flexibility="grow"></lightning-layout-item>
                                 <lightning-layout-item>
-                                        <lightning-button label="Last Page" icon-name="utility:chevronright" icon-position="right" onclick={lastPageHandler}></lightning-button>
-                                    </lightning-layout-item>
+                                    <lightning-button label="Last Page" icon-name="utility:chevronright"
+                                        icon-position="right" onclick={lastPageHandler}></lightning-button>
+                                </lightning-layout-item>
                                 <lightning-layout-item>
-                                    <lightning-button label="Next" icon-name="utility:chevronright" icon-position="right" onclick={nextHandler}></lightning-button>
+                                    <lightning-button label="Next" icon-name="utility:chevronright"
+                                        icon-position="right" onclick={nextHandler}></lightning-button>
                                 </lightning-layout-item>
                             </lightning-layout>
-                        
+
                         </div>
-                        </template>
-                      
-                    
-                    
+                    </template>
                 </template>
                 <template if:true={lastBtn}>
 
-                
-                <lightning-button label="Submit" title="Non-primary action" id="submitBtn" onclick={submitClick}
-                    class="slds-m-left_x-small submitButton"></lightning-button>
+
+                    <lightning-button label="Submit" title="Non-primary action" id="submitBtn" onclick={submitClick}
+                        class="slds-m-left_x-small submitButton"></lightning-button>
                     <template if:true={errorMsg}>
                         <div class="alert">
                             Mark All Questions
@@ -47,11 +49,11 @@
                     </template>
                 </template>
             </template>
-           
+
             <template if:false={showQuestions}>
                 <p class="score"> Score : {score} out of {questions.length}</p>
             </template>
-           
+
         </div>
     </div>
 </template>

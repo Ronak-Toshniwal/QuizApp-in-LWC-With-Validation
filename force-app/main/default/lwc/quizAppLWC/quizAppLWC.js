@@ -5,68 +5,73 @@ export default class QuizAppLWC extends LightningElement {
     @track
     questions =[
     {
-        id : 'input-1',
+        id : 'input-0',
         show : true,
         'q':'An administrator at Universal Container needs an automated way to delete records based on field values. What automated solution should the administrator use??',
         'a':[   {label: 'Workflow',value: 'option1'},
                 {label: 'Process Builder',value: 'option2'},
                 {label: 'Flow Builder',value: 'option3'}, 
                 {label: 'Automation Studio',value: 'option4'}],
-        value:'option3'
+        value:'option3',
+        selected: ''
         
     },
     {
-        id : 'input-2',
+        id : 'input-1',
         show : false,
         'q':'The Human resources department at Northern Trail outfitters wants employees to provide feedback about the manager using a custom object in Salesforce. It is important that managers are unable to see the feedback records from their staff. How should an administrator configure the custom object to meet this requirement??',
         'a':[   {label: 'Uncheck grant access using Hierarchies.',value: 'option1'},
                 {label: 'Define a criteria-based sharing rules.',value: 'option2'},
                 {label: 'Set the default external access to private.',value: 'option3'},
                 {label: 'Configure an owner-based sharing rules.',value: 'option4'}],
-        value:'option2'
+        value:'option2',
+        selected: ''
     },
     {
-        id : 'input-3',
+        id : 'input-2',
         show : false,
         'q':'The VP of Sales at Cloud Kicks is receiving an error message that prevents them form saving an opportunity. The administrator attempted the same edit without receiving an error. How can the administrator validate the error the user is receiving?',
         'a':[   {label: 'Edit the page layout.',value: 'option1'},
                 {label: 'View the setup audit trail.',value: 'option2'},
                 {label: 'Log in as the user.',value: 'option3'},
                 {label: 'Review the sharing model.',value: 'option4'}],
-        value:'option3'
+        value:'option3',
+        selected: ''
     },
     {
-        id : 'input-4',
+        id : 'input-3',
         show : false,
         'q':'The administrator at Aw Computing wants Account Details, related list and chatter feeds to each appear on separate tabs when reviewing an account. Which type of page should the administrator create?',
         'a':[   {label: 'Lightning app page.',value: 'option1'},
                 {label: 'Lightning page Tab.',value: 'option2'},
                 {label: 'Lightning record page.',value: 'option3'},
                 {label: 'Lightning page Component.',value: 'option4'}],
-        value:'option2'
+        value:'option2',
+        selected: ''
     },
     {
-        id : 'input-5',
+        id : 'input-4',
         show : false,
         'q':'Cloud kicks want to give credit to Opportunity team members based on the level of effort contributed by each person toward each deal. What feature should the administrator use to meet this requirement?',
         'a':[   {label: 'Stages',value: 'option1'},
                 {label: 'Splits',value: 'option2'},
                 {label: 'Queues',value: 'option3'},
                 {label: 'List Views',value: 'option4'}],
-        value:'option2'
+        value:'option2',
+        selected: ''
     },
     {
-        id : 'input-6',
+        id : 'input-5',
         show : false,
         'q':'Northern Trail Outfitters has a new flow that automatically sets the field values when a new account is created. That the flow is launched by a process, But the flow is not working properly. What should administrator do to identify the problem?',
         'a':[   {label: 'Use the native debug feature in the flow builder.',value: 'option1'},
                 {label: 'Review debug logs with the login level.',value: 'option2'},
                 {label: 'View the setup audit Trail and review for errors.',value: 'option3'},
                 {label: 'Setup Email logs and review the send error log.',value: 'option4'}],
-        value:'option1'
+        value:''
     },
     {
-        id : 'input-7',
+        id : 'input-6',
         show : false,
         'q':'Ursa Major Solar offers amazing experiences for all of it employees. The Employee engagement committee wants to post updates while restricting other employees from posting. What should the administrator create to meet this request?',
         'a':[   {label: 'Chatter Stream.',value: 'option1'},
@@ -76,7 +81,7 @@ export default class QuizAppLWC extends LightningElement {
         value:'option2'
     },
     {
-        id : 'input-8',
+        id : 'input-7',
         show : false,
         'q':'The sales manager at cloud Kicks approves time off for their employees. They asked the administrator to ensure these requests are seen and responded to by a backup manager while the sales manager is out on vacation. What should administrator use to fulfill the requirement?',
         'a':[{label: 'Delegated approver',value: 'option1'},
@@ -86,7 +91,7 @@ export default class QuizAppLWC extends LightningElement {
         value:'option1'
     },
     {
-        id : 'input-9',
+        id : 'input-8',
         show : false,
         'q':'Cloud Kicks has a custom object called Shipments. The Company wants to see all the shipment items from an Account page. When an Account is deleted, the shipments should remain. What type of relationship should the administrator make between Shipments and Account?',
         'a':[   {label: 'Shipments should have a lookup to Account.',value: 'option1'},
@@ -96,7 +101,7 @@ export default class QuizAppLWC extends LightningElement {
         value:'option1'
     },
     {
-        id : 'input-10',
+        id : 'input-9',
         show : false,
         'q':'A sales rep at Ursa Major Solar has launched a series of networking events. They are hosting one event per month and want to be able to report on campaign ROI by month and series. How should the administrator set up the Campaign to simplify reporting?',
         'a':[   {label: 'Add different record types for the monthly event types.',value: 'option1'},
@@ -104,8 +109,9 @@ export default class QuizAppLWC extends LightningElement {
                 {label: 'Configure campaign Member Statuses to record which event members attended.',value: 'option3'},
                 {label: 'Use Campaign Hierarchy where the monthly events roll up to a parent Campaign.',value: 'option4'}],
         value:'option3'
-    },
+    }
     ]
+    
     errorMsg=false;
     storeAnswers = new Map();
     questionsWithAns = new Map();
@@ -119,12 +125,16 @@ export default class QuizAppLWC extends LightningElement {
           catch(err) {
             console.error(err)
           }
-          
 }
+
+    renderedCallback(){
+        //set the value of radio button
+        this.setRadioVal();
+    }
     handleChange(event){
-      
-        this.storeAnswers.set(event.target.name , event.target.value);
-      
+        let classNameManipulated = (event.target.className).split(' ')[0]
+        this.storeAnswers.set(classNameManipulated , event.target.value);
+        console.log(event.target.id)
     }
     submitClick(){
         console.log('clicked')
@@ -171,31 +181,44 @@ export default class QuizAppLWC extends LightningElement {
     totalPages = this.questions.length-1;
     lastBtn = false;
     
+    
     nextHandler(){
         if(this.currentPage < this.totalPages){
-            console.log(this.currentPage++);
-            console.log(this.questions[this.currentPage]);
+           
+            //hide current element
+            this.questions[this.currentPage].show = false;
+
+            //increate count to access next element of array
+            this.currentPage++;
+
+            //show next element
             this.questions[this.currentPage].show = true;
-            this.questions[this.currentPage-1].show = false;
-            console.log(this.questions);
+           
         }
         if(this.currentPage === this.totalPages){
             this.lastBtn = true;
         } else {
             this.lastBtn = false;
         }
+
     }
 
+     setRadioVal(){
+        let child = this.template.querySelector(`lightning-radio-group[id=input-${this.currentPage}-12]`);
+            child.value = this.storeAnswers.get(`input-${this.currentPage}`)
+    }
+    
     previousHandler(){
        if(this.currentPage > 0 ){
+           console.log(this.currentPage)
              this.questions[this.currentPage].show = false;
-             console.log(this.currentPage--);
-            this.questions[this.currentPage].show = true;
-            
-            console.log(this.questions[this.currentPage]);
-
-            
+             this.currentPage--;
+             this.questions[this.currentPage].show = true;
+           
         }
+        // if(this.currentPage > 0){
+        //    this.template.querySelector(`lightning-button[class=prev]`).disabled = true;
+        // }
         if(this.currentPage === this.totalPages){
             this.lastBtn = true;
         } else {
@@ -216,11 +239,9 @@ export default class QuizAppLWC extends LightningElement {
 
     lastPageHandler(){
             this.questions[this.currentPage].show = false;
-            this.currentPage = this.totalPages - 1;
+            this.currentPage = this.totalPages;
             this.questions[this.currentPage].show = true;
         
-        console.log(this.currentPage);
-        console.log(this.questions[this.currentPage]);
         if(this.currentPage === this.totalPages-1){
             this.lastBtn = true;
         } else {

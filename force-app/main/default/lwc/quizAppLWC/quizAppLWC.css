@@ -29,3 +29,11 @@
 lightning-radio-group {
     margin-left: 50px;
 }
+
+.hideElem{
+    content-visibility: hidden;
+}
+.showElem{
+    content-visibility: visible;
+    
+}
